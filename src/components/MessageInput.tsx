@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useMessaging } from "@/context/MessagingContext";
 import { Input } from "@/components/ui/input";
@@ -10,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Clock, Send, Shield } from "lucide-react";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/hooks/use-toast";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");

@@ -1,6 +1,5 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/hooks/use-toast";
 
 interface WalletContextType {
   isConnected: boolean;
@@ -25,11 +24,9 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Check if wallet is already connected on component mount
   useEffect(() => {
     const checkConnection = async () => {
       try {
-        // In a real implementation, we would check if Martian wallet is connected
         const savedAddress = localStorage.getItem('securechat_wallet_address');
         if (savedAddress) {
           setWalletAddress(savedAddress);
@@ -46,10 +43,8 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const connectWallet = async () => {
     setIsLoading(true);
     try {
-      // Simulate wallet connection (in a real app, connect to Martian wallet)
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Generate a mock wallet address for demonstration
       const mockAddress = `0x${Math.random().toString(16).slice(2, 42)}`;
       setWalletAddress(mockAddress);
       setIsConnected(true);
