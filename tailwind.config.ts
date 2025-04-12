@@ -1,34 +1,44 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
-	darkMode: ["class"],
-	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
-	],
-	prefix: "",
-	theme: {
-		container: {
-			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px'
-			}
-		},
-		extend: {
-			colors: {
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
-				},
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
+  prefix: "",
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
+        securechat: {
+          primary: '#4A5568',     // Dark Slate Gray
+          secondary: '#2D3748',   // Slightly lighter dark slate
+          accent: '#4299E1',      // Bright Blue
+          dark: '#1A202C',        // Very dark background
+          light: '#EDF2F7',       // Light background
+          highlight: '#38B2AC',   // Teal accent
+          success: '#48BB78',     // Green
+          error: '#F56565',       // Red
+          warning: '#ED8936',     // Orange
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
@@ -63,19 +73,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// SecureChat theme colors
-				securechat: {
-					primary: '#8A2BE2',    // Vibrant purple
-					secondary: '#4B0082',  // Deep indigo
-					accent: '#00FFFF',     // Cyan accent
-					dark: '#1A1A2E',       // Near black background
-					light: '#F8F9FA',      // Light background/text
-					highlight: '#FF1493',  // Pink highlight
-					success: '#50C878',    // Emerald green
-					error: '#FF3131',      // Red
-					warning: '#FFD700',    // Gold
-				}
-			},
+      },
+      backgroundImage: {
+        'gradient-encryption': 'linear-gradient(45deg, #1A202C, #2D3748, #4A5568, #4299E1)',
+      },
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
@@ -116,13 +117,10 @@ export default {
 				'glow': 'glow 2s ease-in-out infinite',
 				'encryption': 'encryption 3s ease infinite'
 			},
-			backgroundImage: {
-				'gradient-encryption': 'linear-gradient(45deg, #8A2BE2, #4B0082, #00FFFF, #8A2BE2)',
-			},
 			backgroundSize: {
 				'300%': '300% 100%',
 			},
-		}
-	},
-	plugins: [require("tailwindcss-animate")],
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
