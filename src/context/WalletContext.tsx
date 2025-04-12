@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from "@/hooks/use-toast";
 
@@ -45,15 +46,24 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const mockAddress = `0x${Math.random().toString(16).slice(2, 42)}`;
+      // Use the wallet address provided by the user
+      const mockAddress = "0xc6d2cf7abab25cecc877c19e7cf7a297ce72f84750084fd631678e938b00e9f4";
       setWalletAddress(mockAddress);
       setIsConnected(true);
       localStorage.setItem('securechat_wallet_address', mockAddress);
       
-      toast.success("Wallet connected successfully!");
+      toast({
+        title: "Success",
+        description: "Wallet connected successfully!",
+        variant: "default",
+      });
     } catch (error) {
       console.error("Failed to connect wallet:", error);
-      toast.error("Failed to connect wallet. Please try again.");
+      toast({
+        title: "Error",
+        description: "Failed to connect wallet. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
@@ -63,7 +73,11 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setWalletAddress(null);
     setIsConnected(false);
     localStorage.removeItem('securechat_wallet_address');
-    toast.info("Wallet disconnected");
+    toast({
+      title: "Info",
+      description: "Wallet disconnected",
+      variant: "default",
+    });
   };
 
   const value = {

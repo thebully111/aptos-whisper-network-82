@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useWallet } from './WalletContext';
 import { toast } from "@/hooks/use-toast";
@@ -72,22 +73,27 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       if (savedContacts) {
         setContacts(JSON.parse(savedContacts));
       } else {
-        // Add demo contacts if none exist
+        // Add demo contacts with Indian names
         const demoContacts = [
           { 
             address: '0x1CF52AB003BDC14CA1EF074487449DA99941E17D', 
-            name: 'Alice',
+            name: 'Priya',
             lastActive: Date.now() - 5 * 60 * 1000 
           },
           { 
             address: '0x2BC23AB53F713859CA5B5FB745334875A3E9CDE2', 
-            name: 'Bob',
+            name: 'Raj',
             lastActive: Date.now() - 24 * 60 * 60 * 1000 
           },
           { 
             address: '0x3AD43AB9AF724129CB525FB734240875A4E92D41', 
-            name: 'Charlie',
+            name: 'Ananya',
             lastActive: Date.now() 
+          },
+          { 
+            address: '0x4BD43FF9EE724129CB525FB734240875A4E92ABC', 
+            name: 'Vikram',
+            lastActive: Date.now() - 2 * 60 * 60 * 1000 
           }
         ];
         setContacts(demoContacts);
@@ -125,7 +131,11 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const sendMessage = (recipient: string, content: string, expiresInMinutes?: number) => {
     if (!isConnected || !walletAddress) {
-      toast.error("Please connect your wallet first");
+      toast({
+        title: "Error",
+        description: "Please connect your wallet first",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -147,17 +157,21 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     // Save to local storage (in a real app, this would be stored on the blockchain)
     localStorage.setItem(`securechat_messages_${walletAddress}`, JSON.stringify(updatedMessages));
     
-    toast.success("Message sent securely");
+    toast({
+      title: "Success",
+      description: "Message sent securely",
+      variant: "default",
+    });
     
     // Simulate receiving a response for demo purposes
     if (Math.random() > 0.5) {
       setTimeout(() => {
         const responseOptions = [
-          "Got your message! Thanks for using SecureChat!",
-          "Message received securely. This is amazing technology!",
-          "Thanks for reaching out! I love how private this is.",
-          "Received! Isn't end-to-end encryption awesome?",
-          "Your message came through perfectly. SecureChat rocks!"
+          "Thanks for the message! SecureChat is amazing!",
+          "Message received securely. Great technology!",
+          "Thanks for contacting me! I love how private this is.",
+          "Got it! End-to-end encryption is awesome!",
+          "Your message came through perfectly. SecureChat is the best!"
         ];
         
         const responseContent = responseOptions[Math.floor(Math.random() * responseOptions.length)];
@@ -179,7 +193,11 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
           return updated;
         });
         
-        toast.info(`New message from ${recipientName}`);
+        toast({
+          title: "New Message",
+          description: `New message from ${recipientName}`,
+          variant: "default",
+        });
       }, 3000 + Math.random() * 10000);
     }
   };
@@ -208,14 +226,22 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     if (walletAddress) {
       localStorage.setItem(`securechat_messages_${walletAddress}`, JSON.stringify(updatedMessages));
     }
-    toast.info("Message deleted");
+    toast({
+      title: "Info",
+      description: "Message deleted",
+      variant: "default",
+    });
   };
 
   const addContact = (address: string, name?: string) => {
     // Check if contact already exists
     const existingContact = contacts.find(c => c.address === address);
     if (existingContact) {
-      toast.error("Contact already exists");
+      toast({
+        title: "Error",
+        description: "Contact already exists",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -232,7 +258,11 @@ export const MessagingProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       localStorage.setItem(`securechat_contacts_${walletAddress}`, JSON.stringify(updatedContacts));
     }
     
-    toast.success("Contact added");
+    toast({
+      title: "Success",
+      description: "Contact added",
+      variant: "default",
+    });
   };
 
   const selectContact = (contact: Contact | null) => {

@@ -16,12 +16,12 @@ const WalletConnect = () => {
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight">SecureChat</CardTitle>
           <CardDescription className="text-muted-foreground">
-            Privacy-first, blockchain-powered messaging
+            भारत का सबसे सुरक्षित मैसेजिंग ऐप (India's Most Secure Messaging App)
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="text-center text-sm text-muted-foreground mb-6">
-            <p>Connect your Martian Wallet to access SecureChat's end-to-end encrypted messaging.</p>
+            <p>Connect your Martian Aptos Wallet to access SecureChat's end-to-end encrypted messaging.</p>
           </div>
           <Button 
             onClick={connectWallet} 
@@ -29,7 +29,7 @@ const WalletConnect = () => {
             disabled={isLoading}
           >
             <Wallet className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-            {isLoading ? "Connecting..." : "Connect Martian Wallet"}
+            {isLoading ? "Connecting..." : "Connect Martian Aptos Wallet"}
           </Button>
         </CardContent>
       </Card>
