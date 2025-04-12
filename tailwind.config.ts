@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// SecureChat theme colors
+				securechat: {
+					primary: '#8A2BE2',    // Vibrant purple
+					secondary: '#4B0082',  // Deep indigo
+					accent: '#00FFFF',     // Cyan accent
+					dark: '#1A1A2E',       // Near black background
+					light: '#F8F9FA',      // Light background/text
+					highlight: '#FF1493',  // Pink highlight
+					success: '#50C878',    // Emerald green
+					error: '#FF3131',      // Red
+					warning: '#FFD700',    // Gold
 				}
 			},
 			borderRadius: {
@@ -70,26 +83,45 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				pulse: {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' },
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'glow': {
+					'0%, 100%': { textShadow: '0 0 5px rgba(138, 43, 226, 0.5)' },
+					'50%': { textShadow: '0 0 20px rgba(138, 43, 226, 0.8), 0 0 30px rgba(0, 255, 255, 0.6)' }
+				},
+				'encryption': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'fade-in': 'fade-in 0.5s ease-out',
+				'glow': 'glow 2s ease-in-out infinite',
+				'encryption': 'encryption 3s ease infinite'
+			},
+			backgroundImage: {
+				'gradient-encryption': 'linear-gradient(45deg, #8A2BE2, #4B0082, #00FFFF, #8A2BE2)',
+			},
+			backgroundSize: {
+				'300%': '300% 100%',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
